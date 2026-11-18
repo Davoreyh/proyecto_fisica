@@ -1,0 +1,3 @@
+VALIDACION DEL MODELO E = c * operaciones_aproximadas
+Selection Sort, n=2000: medido=0.195571 J/ord., predicho=0.190168 J/ord., error relativo=2.8%
+Merge Sort, n=2000: medido=0.00975086 J/ord., predicho=0.0102649 J/ord., error relativo=5.3%

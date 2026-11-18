@@ -1,0 +1,75 @@
+{
+  "phases": [
+    {
+      "kind": "baseline",
+      "name": "reposo inicial",
+      "start": 1794120308.756212,
+      "end": 1794120318.761298
+    },
+    {
+      "kind": "sort",
+      "name": "Selection Sort",
+      "n": 1000,
+      "executions": 1335,
+      "start": 1794120318.7878022,
+      "end": 1794120330.7919471,
+      "checksum": 1333665
+    },
+    {
+      "kind": "sort",
+      "name": "Merge Sort",
+      "n": 1000,
+      "executions": 13754,
+      "start": 1794120332.8005319,
+      "end": 1794120344.800935,
+      "checksum": 13740246
+    },
+    {
+      "kind": "sort",
+      "name": "Merge Sort",
+      "n": 500,
+      "executions": 29594,
+      "start": 1794120346.809299,
+      "end": 1794120358.809684,
+      "checksum": 14767406
+    },
+    {
+      "kind": "sort",
+      "name": "Selection Sort",
+      "n": 500,
+      "executions": 5241,
+      "start": 1794120360.824796,
+      "end": 1794120372.8260858,
+      "checksum": 2615259
+    },
+    {
+      "kind": "sort",
+      "name": "Selection Sort",
+      "n": 2000,
+      "executions": 343,
+      "start": 1794120374.897238,
+      "end": 1794120386.911733,
+      "checksum": 685657
+    },
+    {
+      "kind": "sort",
+      "name": "Merge Sort",
+      "n": 2000,
+      "executions": 6428,
+      "start": 1794120388.924366,
+      "end": 1794120400.9248278,
+      "checksum": 12849572
+    },
+    {
+      "kind": "baseline",
+      "name": "reposo final",
+      "start": 1794120402.931225,
+      "end": 1794120412.947194
+    }
+  ],
+  "sizes": [
+    1000,
+    500,
+    2000
+  ]
+}

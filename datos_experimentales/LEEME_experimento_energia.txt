@@ -1,0 +1,39 @@
+PRUEBA PILOTO – Consumo energético de algoritmos en Mac Apple Silicon
+
+Archivo necesario: proyecto_energia_mac.py
+No necesitas instalar bibliotecas externas.
+
+1. Descarga el script y colócalo en Descargas.
+2. Abre Terminal en macOS y ejecuta:
+
+   cd ~/Downloads
+   sudo -v
+   python3 proyecto_energia_mac.py
+
+3. Introduce la contraseña de macOS si el sistema la solicita. No se escribe dentro del script.
+4. Al finalizar, verás una carpeta "resultados_energia" en Descargas con:
+   - potencia.txt: datos sin modificar de powermetrics.
+   - eventos.json: intervalos y ejecuciones de cada algoritmo.
+   - resultados.csv: comparaciones para abrir en Excel.
+   - validacion.txt: predicción fuera de muestra para el mayor tamaño.
+
+Para reprocesar sin medir otra vez:
+   python3 proyecto_energia_mac.py --analizar-directorio resultados_energia
+
+Si deseas un piloto más corto (menos muestras y menor precisión):
+   python3 proyecto_energia_mac.py --segundos 8 --reposo 8
+
+Para una prueba más fiable, repite el experimento completo varias veces:
+   python3 proyecto_energia_mac.py --salida replica_2
+   python3 proyecto_energia_mac.py --salida replica_3
+
+RESTRICCIONES:
+- El script usa estimaciones de potencia de CPU completa, NO energía exacta del proceso.
+- Para comparar, deja el Mac conectado a la corriente, no ejecutes trabajos pesados en paralelo,
+  no cambies de modo de energía y procura condiciones térmicas comparables.
+- 'Energía adicional' = (potencia de CPU durante la carga - potencia CPU de reposo)
+  x tiempo de la carga. Puede ser negativa si hay ruido o actividad de fondo.
+- No afirmes que validaste un modelo solo porque ajustaste parámetros con los mismos datos.
+  validacion.txt compara el tamaño más grande con un modelo ajustado en los tamaños anteriores.
+- Los resultados de una sola corrida son EXPLORATORIOS. Repite y reporta dispersión.
+- No es una medición del consumo total del ordenador ni de la batería.

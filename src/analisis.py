@@ -5,10 +5,6 @@ import matplotlib.pyplot as plt
 from modelo_energia import analizar_medicion
 from prediccion import generar_predicciones
 
-# ==================================================
-# 1. UBICACION DE LOS ARCHIVOS
-# ==================================================
-
 BASE = Path(__file__).resolve().parents[1]
 
 ARCHIVOS = [
@@ -23,10 +19,6 @@ CARPETA_FIGURAS = BASE / "figuras"
 CARPETA_RESULTADOS.mkdir(parents=True, exist_ok=True)
 CARPETA_FIGURAS.mkdir(parents=True, exist_ok=True)
 
-
-# ==================================================
-# 2. LEER LOS DATOS EXPERIMENTALES
-# ==================================================
 
 COLUMNAS = [
     "algoritmo",
@@ -64,11 +56,6 @@ for numero, archivo in enumerate(ARCHIVOS, start=1):
 
 todos = pd.concat(tablas, ignore_index=True)
 
-
-# ==================================================
-# 3. APLICAR EL MODELO FISICO A CADA MEDICION
-# ==================================================
-
 resultados_modelo = []
 
 for _, fila in todos.iterrows():
@@ -84,7 +71,6 @@ for _, fila in todos.iterrows():
     resultados_modelo.append(resultado)
 
 
-# Convertir los resultados del modelo en una tabla
 modelo = pd.DataFrame(resultados_modelo)
 
 todos = pd.concat(
@@ -92,10 +78,6 @@ todos = pd.concat(
     axis=1
 )
 
-
-# ==================================================
-# COMPARACION DE ENERGIA ORIGINAL Y MODELO FISICO
-# ==================================================
 
 comparacion = todos[
     [
@@ -107,13 +89,11 @@ comparacion = todos[
     ]
 ].copy()
 
-# Diferencia absoluta entre ambos calculos
 comparacion["diferencia_absoluta_J"] = (
     comparacion["energia_por_ordenamiento_J"]
     - comparacion["energia_adicional_por_ordenamiento_J"]
 ).abs()
 
-# Error relativo porcentual
 comparacion["error_relativo_pct"] = (
     comparacion["diferencia_absoluta_J"]
     / comparacion["energia_adicional_por_ordenamiento_J"].abs()
@@ -122,13 +102,11 @@ comparacion["error_relativo_pct"] = (
     )
 ) * 100
 
-# Guardar tabla comparativa
 comparacion.to_csv(
     CARPETA_RESULTADOS / "comparacion_energia_modelo.csv",
     index=False
 )
 
-# Mostrar resultados
 print("\nCOMPARACION ENTRE ENERGIA ORIGINAL Y MODELO FISICO")
 print("--------------------------------------------------")
 
@@ -142,9 +120,6 @@ print(
 print("\nTabla comparativa guardada correctamente.")
 
 
-# ==================================================
-# 4. COMPARAR CON EL CSV ORIGINAL
-# ==================================================
 
 todos["diferencia_energia_J"] = (
     todos["energia_por_ordenamiento_J"]
@@ -175,19 +150,11 @@ print(
 )
 
 
-# ==================================================
-# 5. GUARDAR LOS RESULTADOS COMBINADOS
-# ==================================================
-
 todos.to_csv(
     CARPETA_RESULTADOS / "resultados_combinados.csv",
     index=False
 )
 
-
-# ==================================================
-# 6. CALCULAR ESTADISTICAS
-# ==================================================
 
 resumen = (
     todos.groupby(["algoritmo", "n"])
@@ -234,18 +201,11 @@ resumen.to_csv(
     index=False
 )
 
-# ==================================================
-# 7. MODELO PREDICTIVO Y VALIDACION
-# ==================================================
 
 predicciones = generar_predicciones(
     resumen,
     CARPETA_RESULTADOS
 )
-
-# ==================================================
-# 8. GRAFICA DE ENERGIA
-# ==================================================
 
 plt.figure(figsize=(9, 6))
 
@@ -276,10 +236,6 @@ plt.savefig(
 
 plt.show()
 
-
-# ==================================================
-# 9. GRAFICA DE TIEMPO
-# ==================================================
 
 plt.figure(figsize=(9, 6))
 

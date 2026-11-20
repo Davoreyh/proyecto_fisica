@@ -1,11 +1,4 @@
 def selection_sort(lista):
-    """
-    Ordena una lista usando Selection Sort.
-
-    Retorna:
-    - La lista ordenada.
-    - El número de comparaciones realizadas.
-    """
 
     arreglo = lista.copy()
     comparaciones = 0
@@ -28,13 +21,7 @@ def selection_sort(lista):
     return arreglo, comparaciones
 
 def merge_sort(lista):
-    """
-    Ordena una lista usando Merge Sort.
-
-    Retorna:
-    - La lista ordenada.
-    - El número de comparaciones realizadas.
-    """
+    
 
     if len(lista) <= 1:
         return lista.copy(), 0

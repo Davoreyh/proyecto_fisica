@@ -4,10 +4,6 @@ import pandas as pd
 
 
 def trabajo_algoritmo(algoritmo, n):
-    """
-    Funcion que representa el crecimiento del trabajo
-    computacional de cada algoritmo.
-    """
 
     if algoritmo == "Selection Sort":
         return n * (n - 1) / 2
@@ -20,10 +16,6 @@ def trabajo_algoritmo(algoritmo, n):
 
 
 def ajustar_modelo(datos_calibracion, algoritmo):
-    """
-    Ajusta el coeficiente energetico usando los tamaños
-    de entrada destinados a calibracion.
-    """
 
     trabajos = []
     energias = []
@@ -57,7 +49,6 @@ def generar_predicciones(resumen, carpeta_resultados):
     """
     Calibra el modelo con n=500 y n=1000.
     Predice la energia para n=2000.
-    Compara la prediccion con la medicion experimental.
     """
 
     tamanos_calibracion = [500, 1000]
@@ -85,13 +76,11 @@ def generar_predicciones(resumen, carpeta_resultados):
                 f"Falta la medicion de validacion para {algoritmo}."
             )
 
-        # Ajustar el coeficiente con 500 y 1000
         coeficiente = ajustar_modelo(
             calibracion,
             algoritmo
         )
 
-        # Obtener el valor medido para 2000
         fila_validacion = validacion.iloc[0]
 
         energia_medida = fila_validacion["energia_media"]
@@ -101,12 +90,10 @@ def generar_predicciones(resumen, carpeta_resultados):
             tamano_validacion
         )
 
-        # Calcular la prediccion
         energia_predicha = (
             coeficiente * trabajo_validacion
         )
 
-        # Calcular el error relativo porcentual
         error_relativo = (
             abs(energia_predicha - energia_medida)
             / abs(energia_medida)
@@ -124,7 +111,6 @@ def generar_predicciones(resumen, carpeta_resultados):
 
     tabla_predicciones = pd.DataFrame(resultados)
 
-    # Guardar los resultados
     carpeta_resultados = Path(carpeta_resultados)
     carpeta_resultados.mkdir(
         parents=True,
